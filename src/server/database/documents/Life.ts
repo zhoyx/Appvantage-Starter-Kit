@@ -8,4 +8,4 @@ export type Life = {
     title: string;
     description: string;
     hobbies: string[];
-}
+};

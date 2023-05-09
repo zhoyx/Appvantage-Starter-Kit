@@ -66,6 +66,18 @@ export type AuthenticatorSetup = {
 
 export type ExternalLink = ResetPasswordLink;
 
+export type Life = {
+  __typename?: 'Life';
+  birthday: Scalars['DateTime'];
+  description: Scalars['String'];
+  firstName: Scalars['String'];
+  fullName: Scalars['String'];
+  hobbies: Array<Scalars['String']>;
+  id: Scalars['ObjectID'];
+  lastName: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+};
+
 export type MessageNotice = {
   __typename?: 'MessageNotice';
   date: Scalars['DateTime'];
@@ -90,6 +102,8 @@ export type Mutation = {
   completeWebPublicKeyCredentialRegistration: Scalars['Boolean'];
   /** Create a new account/user */
   createAccount: User;
+  /** Create new lives */
+  createLife: Life;
   /** Disable 2FA / Authenticator for the signed user */
   disableAuthenticator: User;
   /** Enable 2FA / Authenticator for the signed user */
@@ -169,6 +183,11 @@ export type MutationCreateAccountArgs = {
 };
 
 
+export type MutationCreateLifeArgs = {
+  life?: InputMaybe<CreateLifeInput>;
+};
+
+
 export type MutationEnableAuthenticatorArgs = {
   secret: Scalars['String'];
   token: Scalars['String'];
@@ -218,8 +237,12 @@ export type Query = {
   generateAuthenticatorChallenge?: Maybe<AuthenticationWithWebPublicKeyCredential>;
   /** Generate authenticator secret and qrcode */
   generateAuthenticatorSetup: AuthenticatorSetup;
+  /** Get a life by its ID */
+  getLife?: Maybe<Life>;
   /** Fetch WebAuthn security keys for a username */
   getWebauthnKeys: Array<Scalars['String']>;
+  /** List lives */
+  listLives: Array<Life>;
   /** List users */
   listUsers: PaginatedUsers;
   /** Retrieve a link information */
@@ -229,6 +252,11 @@ export type Query = {
 
 export type QueryGenerateAuthenticatorChallengeArgs = {
   username: Scalars['String'];
+};
+
+
+export type QueryGetLifeArgs = {
+  id: Scalars['ObjectID'];
 };
 
 
@@ -351,6 +379,15 @@ export type WebPublicKeyCredentialRegistrationRequest = {
   options: Scalars['JSONObject'];
   /** Token to proceed with registration */
   token: Scalars['String'];
+};
+
+export type CreateLifeInput = {
+  birthday: Scalars['DateTime'];
+  description: Scalars['String'];
+  firstName: Scalars['String'];
+  hobbies: Array<Scalars['String']>;
+  lastName: Scalars['String'];
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type RetrieveLinkQueryVariables = Exact<{

@@ -1,0 +1,19 @@
+import { ObjectId } from 'mongodb';
+import { getDatabaseContext, Life } from '../../../database';
+import { GraphQLMutationResolvers } from '../definitions';
+
+const mutation: GraphQLMutationResolvers['createLife'] = async (root, { life }) => {
+    const { collections } = await getDatabaseContext();
+
+    const document: Life = {
+        _id: new ObjectId(),
+        ...life,
+        title: life.title,
+    };
+
+    await collections.lives.insertOne(document);
+
+    return document;
+};
+
+export default mutation;
