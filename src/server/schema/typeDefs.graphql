@@ -51,6 +51,17 @@ union ExternalLink = ResetPasswordLink
 
 scalar JSONObject
 
+type Life {
+  birthday: DateTime!
+  description: String!
+  firstName: String!
+  fullName: String!
+  hobbies: [String!]!
+  id: ObjectID!
+  lastName: String!
+  title: String
+}
+
 type MessageNotice {
   date: DateTime!
   message: String!
@@ -73,6 +84,8 @@ type Mutation {
   completeWebPublicKeyCredentialRegistration(response: JSONObject!, token: String!): Boolean!
   """Create a new account/user"""
   createAccount(email: String!, password: String!, username: String!): User!
+  """Create new lives"""
+  createLife(life: createLifeInput!): Life!
   """Disable 2FA / Authenticator for the signed user"""
   disableAuthenticator: User!
   """Enable 2FA / Authenticator for the signed user"""
@@ -128,8 +141,12 @@ type Query {
   generateAuthenticatorChallenge(username: String!): AuthenticationWithWebPublicKeyCredential
   """Generate authenticator secret and qrcode"""
   generateAuthenticatorSetup: AuthenticatorSetup!
+  """Get a life by its ID"""
+  getLife(id: ObjectID!): Life
   """Fetch WebAuthn security keys for a username"""
   getWebauthnKeys(username: String!): [String!]!
+  """List lives"""
+  listLives: [Life!]!
   """List users"""
   listUsers(filter: UserFilteringRule, pagination: Pagination!, sort: UserSortingRule): PaginatedUsers!
   """Retrieve a link information"""
@@ -234,4 +251,13 @@ type WebPublicKeyCredentialRegistrationRequest {
   options: JSONObject!
   """Token to proceed with registration"""
   token: String!
+}
+
+input createLifeInput {
+  birthday: DateTime!
+  description: String!
+  firstName: String!
+  hobbies: [String!]!
+  lastName: String!
+  title: String
 }

@@ -30,6 +30,11 @@ const generateMenu = (t: TFunction): ItemMeta[] => [
             },
         ],
     },
+    {
+        key: 'Lives',
+        label: 'Lives',
+        href: '/Lives',
+    },
 ];
 
 type MenuMap = { [key: string]: string };
