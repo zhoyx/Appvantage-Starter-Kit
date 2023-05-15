@@ -85,7 +85,7 @@ type Mutation {
   """Create a new account/user"""
   createAccount(email: String!, password: String!, username: String!): User!
   """Create new lives"""
-  createLife(life: createLifeInput): Life!
+  createLife(life: createLifeInput!): Life!
   """Disable 2FA / Authenticator for the signed user"""
   disableAuthenticator: User!
   """Enable 2FA / Authenticator for the signed user"""

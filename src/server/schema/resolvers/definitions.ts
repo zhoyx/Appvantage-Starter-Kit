@@ -185,7 +185,7 @@ export type GraphQLMutationCreateAccountArgs = {
 
 
 export type GraphQLMutationCreateLifeArgs = {
-  life?: InputMaybe<GraphQLCreateLifeInput>;
+  life: GraphQLCreateLifeInput;
 };
 
 
@@ -585,7 +585,7 @@ export type GraphQLMutationResolvers<ContextType = Context, ParentType extends G
   changePasswordFromToken?: Resolver<GraphQLResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GraphQLMutationChangePasswordFromTokenArgs, 'token'>>;
   completeWebPublicKeyCredentialRegistration?: Resolver<GraphQLResolversTypes['Boolean'], ParentType, ContextType, RequireFields<GraphQLMutationCompleteWebPublicKeyCredentialRegistrationArgs, 'response' | 'token'>>;
   createAccount?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType, RequireFields<GraphQLMutationCreateAccountArgs, 'email' | 'password' | 'username'>>;
-  createLife?: Resolver<GraphQLResolversTypes['Life'], ParentType, ContextType, Partial<GraphQLMutationCreateLifeArgs>>;
+  createLife?: Resolver<GraphQLResolversTypes['Life'], ParentType, ContextType, RequireFields<GraphQLMutationCreateLifeArgs, 'life'>>;
   disableAuthenticator?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType>;
   enableAuthenticator?: Resolver<GraphQLResolversTypes['User'], ParentType, ContextType, RequireFields<GraphQLMutationEnableAuthenticatorArgs, 'secret' | 'token'>>;
   generateWebCredentialAuthentication?: Resolver<Maybe<GraphQLResolversTypes['AuthenticationWithWebPublicKeyCredential']>, ParentType, ContextType, RequireFields<GraphQLMutationGenerateWebCredentialAuthenticationArgs, 'username'>>;

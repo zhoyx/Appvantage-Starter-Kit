@@ -5,7 +5,7 @@ export type Life = {
     firstName: string;
     lastName: string;
     birthday: Date;
-    title: string;
+    title?: string;
     description: string;
     hobbies: string[];
 };

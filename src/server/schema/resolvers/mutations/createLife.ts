@@ -8,7 +8,6 @@ const mutation: GraphQLMutationResolvers['createLife'] = async (root, { life }) 
     const document: Life = {
         _id: new ObjectId(),
         ...life,
-        title: life.title,
     };
 
     await collections.lives.insertOne(document);
